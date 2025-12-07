@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySubs - Subscription Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f7;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #007AFF;
+        }
+        
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007AFF, #00C7FF);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: #007AFF;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+        
+        .hero p {
+            font-size: 21px;
+            color: #6e6e73;
+            margin-bottom: 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #007AFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 17px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #0051D5;
+        }
+        
+        .features {
+            padding: 80px 20px;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+        
+        .feature-card p {
+            color: #6e6e73;
+            line-height: 1.5;
+        }
+        
+        .pricing {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            border: 2px solid #d2d2d7;
+            border-radius: 18px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border-color: #007AFF;
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: "Best Value";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #007AFF;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #007AFF;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 18px;
+            color: #6e6e73;
+            font-weight: 400;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+            color: #1d1d1f;
+        }
+        
+        .pricing-features li::before {
+            content: "✓";
+            color: #34C759;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .faq {
+            padding: 80px 20px;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #1d1d1f;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .faq-item h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+        
+        .faq-item p {
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        
+        footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #007AFF;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features h2, .pricing h2, .faq h2 {
+                font-size: 32px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="app-icon">💳</div>
+                    <span>MySubs</span>
+                </div>
+                <nav>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#support">Support</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Track Your Subscriptions</h1>
+            <p>Never miss a renewal date. Take control of your recurring payments.</p>
+            <a href="#" class="cta-button">Download on App Store</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Everything</h3>
+                    <p>Monitor all your subscriptions in one place. See monthly and annual spending at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Calendar View</h3>
+                    <p>Premium: Visualize all your renewals on an interactive calendar. Plan ahead with monthly view.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart Reminders</h3>
+                    <p>Premium: Get notified before renewals. Choose from same day, 1 day, 3 days, or 1 week ahead.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Category Breakdown</h3>
+                    <p>Organize by streaming, productivity, utilities, and more. See where your money goes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Multi-Currency</h3>
+                    <p>Support for all major currencies. Automatically detects your region.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Private & Secure</h3>
+                    <p>All data stays on your device. No cloud storage, no tracking, completely private.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <ul class="pricing-features">
+                        <li>Track up to 5 subscriptions</li>
+                        <li>Monthly spending overview</li>
+                        <li>Annual projection</li>
+                        <li>Category breakdown</li>
+                        <li>Multi-currency support</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>Monthly</h3>
+                    <div class="price">$0.99<span class="price-period">/mo</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited subscriptions</li>
+                        <li>Renewal reminders</li>
+                        <li>Calendar view</li>
+                        <li>Custom notification timing</li>
+                        <li>Future features & widgets</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Yearly</h3>
+                    <div class="price">$7.99<span class="price-period">/yr</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited subscriptions</li>
+                        <li>Renewal reminders</li>
+                        <li>Calendar view</li>
+                        <li>Custom notification timing</li>
+                        <li>Future features & widgets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>Do you store my subscription data in the cloud?</h3>
+                <p>No. All your subscription data is stored locally on your device. We do not collect, store, or share your personal subscription information.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I use MySubs on multiple devices?</h3>
+                <p>Currently, data is stored locally on each device. If you purchase Premium, you can restore your purchase on other devices signed in with the same Apple ID.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What happens if I cancel Premium?</h3>
+                <p>You'll retain Premium access until the end of your current billing period. After that, you'll return to the free tier (5 subscription limit) and notifications will be disabled. Your subscription data will not be deleted.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How are notifications scheduled?</h3>
+                <p>Notifications are sent at 10:00 AM based on your chosen timing (same day, 1 day, 3 days, or 1 week before renewal).</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Will there be more features?</h3>
+                <p>Yes! We're working on widgets and other features that will be available to Premium subscribers.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="support">
+        <div class="container">
+            <p><strong>Need Help?</strong></p>
+            <p>Contact us at <a href="mailto:support@example.com">support@example.com</a></p>
+            <p style="margin-top: 20px;">We typically respond within 24-48 hours.</p>
+            <p style="margin-top: 30px; font-size: 14px; color: #86868b;">
+                <a href="privacy.html">Privacy Policy</a> · 
+                <a href="terms.html">Terms of Service</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 14px; color: #86868b;">
+                © 2025 Avi Shany Apps. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
